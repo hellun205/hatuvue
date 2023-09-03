@@ -2,8 +2,15 @@
   <div class="header">
     <router-link class="icon" to="/">hatuvue</router-link>
     <div class="search">
-      <input />
-      <button>검색</button>
+      <input
+        v-model="searchValue"
+        @keydown="
+          (e) => {
+            if (e.key === 'Enter') search();
+          }
+        "
+      />
+      <button @click="search">검색</button>
     </div>
   </div>
 </template>
@@ -13,6 +20,16 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "AppHeader",
+  data() {
+    return {
+      searchValue: "",
+    };
+  },
+  methods: {
+    search() {
+      console.log(this.searchValue);
+    },
+  },
 });
 </script>
 
@@ -27,7 +44,6 @@ export default defineComponent({
     user-select: none;
     font-size: 1.5rem;
     font-weight: bold;
-    // margin-right: auto;
     padding: 0.5rem;
     letter-spacing: 0.15rem;
     color: rgb(255, 0, 191);
@@ -37,8 +53,6 @@ export default defineComponent({
   }
 
   .search {
-    // margin-right: auto;
-
     & input {
       width: 400px;
       border-radius: 30px 0px 0px 30px;
