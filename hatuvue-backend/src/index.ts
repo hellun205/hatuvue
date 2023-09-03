@@ -1,7 +1,7 @@
-const express = require("express");
-const cors = require("cors");
-const bodyParser = require("body-parser");
-const mysql = require("mysql2");
+import express, { Request, Response, NextFunction } from "express";
+import mysql from "mysql2";
+import cors from "cors";
+import bodyParser from "body-parser";
 
 const app = express();
 let connection;
@@ -20,6 +20,11 @@ app.use("/cdn", express.static("public"));
     user: "user",
     password: "user",
   });
+
+  app.route("/api/test").get((req, res) => {
+    res.send("Hello world!");
+  });
+
   app.listen(app.get("port"), () => {
     console.log("server is listening port " + app.get("port"));
   });
