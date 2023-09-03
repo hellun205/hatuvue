@@ -1,30 +1,77 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
+  <Header />
   <router-view />
 </template>
 
+<script lang="ts">
+import Header from "./components/Header.vue";
+
+export default {
+  name: "App",
+  components: {
+    Header,
+  },
+};
+</script>
+
 <style lang="scss">
+@import "Constance.scss";
+
+* {
+  font-family: "Apple SD Gothic Neo", "애플 SD 산돌고딕 Neo",
+    "AppleSDGothicNeoM00", "맑은 고딕", "Malgun Gothic", Helvetica, Arial,
+    sans-serif;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
 }
 
-nav {
-  padding: 30px;
+.router-link-active {
+  color: black;
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+a {
+  color: black;
+  text-decoration-line: none;
+}
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+input {
+  transition: border-color 0.2s;
+  padding: 0.6rem;
+  border-radius: 5px;
+  border: 1px solid black;
+  outline: none;
+
+  &:focus {
+    border-color: $pri;
+  }
+}
+
+button {
+  transition: background-color 0.2s;
+  padding: 0.6rem 1rem 0.6rem 1rem;
+  border-radius: 7px;
+  border: none;
+  outline: none;
+  background-color: $pri-light;
+  user-select: none;
+
+  &:hover {
+    background-color: $pri-light-hover;
+    cursor: pointer;
+  }
+
+  &:active {
+    background-color: $pri-light-active;
   }
 }
 </style>
