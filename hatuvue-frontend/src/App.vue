@@ -4,7 +4,7 @@
 </template>
 
 <script lang="ts">
-import Header from "./components/Header.vue";
+import Header from "./components/AppHeader.vue";
 
 export default {
   name: "App",
@@ -57,17 +57,20 @@ input {
 }
 
 button {
-  transition: background-color 0.2s;
   padding: 0.6rem 1rem 0.6rem 1rem;
   border-radius: 7px;
   border: none;
   outline: none;
   background-color: $pri-light;
   user-select: none;
+  cursor: pointer;
+}
+
+.button {
+  transition: background-color 0.2s;
 
   &:hover {
     background-color: $pri-light-hover;
-    cursor: pointer;
   }
 
   &:active {
