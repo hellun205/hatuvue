@@ -1,9 +1,25 @@
 import { createStore } from "vuex";
 
 export default createStore({
-  state: {},
+  state: {
+    sideMenu: false,
+  },
   getters: {},
-  mutations: {},
-  actions: {},
+  mutations: {
+    toggleSideMenu(state) {
+      state.sideMenu = !state.sideMenu;
+    },
+    setSideMenu(state, payload) {
+      state.sideMenu = payload;
+    },
+  },
+  actions: {
+    toggleSideMenu({ commit }) {
+      commit("toggleSideMenu");
+    },
+    setSideMenu({ commit }, payload) {
+      commit("setSideMenu", payload);
+    },
+  },
   modules: {},
 });
