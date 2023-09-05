@@ -12,3 +12,9 @@ export default defineComponent({
   components: {},
 });
 </script>
+
+<style lang="scss">
+.home {
+  height: 200vh;
+}
+</style>

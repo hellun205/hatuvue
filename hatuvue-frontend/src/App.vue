@@ -1,15 +1,20 @@
 <template>
   <Header />
-  <router-view />
+  <SideMenu />
+  <div class="content">
+    <div class="router-view"><router-view /></div>
+  </div>
 </template>
 
 <script lang="ts">
 import Header from "./components/AppHeader.vue";
+import SideMenu from "./components/SideMenu.vue";
 
 export default {
   name: "App",
   components: {
     Header,
+    SideMenu,
   },
 };
 </script>
@@ -18,15 +23,15 @@ export default {
 @import "Constance.scss";
 
 * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
   font-family: "Apple SD Gothic Neo", "애플 SD 산돌고딕 Neo",
     "AppleSDGothicNeoM00", "맑은 고딕", "Malgun Gothic", Helvetica, Arial,
     sans-serif;
 }
 
 body {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
 }
 
 #app {
@@ -76,5 +81,22 @@ button {
   &:active {
     background-color: $pri-light-active;
   }
+}
+
+.content {
+  display: flex;
+  width: 100vw;
+
+  height: calc(100vh - 5rem);
+  // height: 500px;
+  margin-top: 5rem;
+  overflow: scroll;
+}
+
+.router-view {
+  // overflow: visible;
+  width: 100%;
+  // height: 100%;
+  // margin-top: 5rem;
 }
 </style>
