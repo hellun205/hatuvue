@@ -62,6 +62,10 @@
 
       <button class="button search-button" @click="search">검색</button>
     </div>
+
+    <div class="right">
+      <button class="button">업로드</button>
+    </div>
   </div>
 </template>
 
@@ -134,17 +138,25 @@ export default defineComponent({
   top: 0;
   left: 0;
   width: 100vw;
-  height: 5rem;
+  height: $header-height;
   padding: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  .left {
+  .left,
+  .right {
     position: absolute;
-    left: 2rem;
     display: flex;
     align-items: center;
+  }
+
+  .left {
+    left: 2rem;
+  }
+
+  .right {
+    right: 2rem;
   }
 
   .icon {
@@ -195,7 +207,7 @@ export default defineComponent({
     // transition: all 0.2s;
     display: flex;
     overflow: visible;
-    height: 40px;
+    height: 35px;
     @media (width <= 920px) {
       width: 35vw;
     }
@@ -212,7 +224,7 @@ export default defineComponent({
 
     & input {
       width: 100%;
-      height: 40px;
+      height: 35px;
       border-radius: 30px 0px 0px 30px;
       padding: 0 25px 0 25px;
     }

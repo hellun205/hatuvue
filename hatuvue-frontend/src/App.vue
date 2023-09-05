@@ -101,8 +101,8 @@ button {
   display: flex;
   width: 100vw;
 
-  height: calc(100vh - 5rem);
-  margin-top: 5rem;
+  height: calc(100vh - $header-height);
+  margin-top: $header-height;
   overflow: scroll;
 }
 

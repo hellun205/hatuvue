@@ -26,6 +26,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+@import "../Constance.scss";
 .sidemenu-wrapper {
   .menu-enter-active,
   .menu-leave-active {
@@ -41,16 +42,14 @@ export default defineComponent({
     transition: all 1s;
     position: fixed;
     width: 100vw;
-    height: calc(100vh - 5rem);
-    // margin-top: 5rem;
+    height: calc(100vh - $header-height);
     background-color: rgba(0, 0, 0, 0.1);
   }
 
   .menu {
     width: 300px;
     position: fixed;
-    // margin-top: 5rem;
-    height: calc(100vh - 5rem);
+    height: calc(100vh - $header-height);
     background-color: white;
   }
 }
