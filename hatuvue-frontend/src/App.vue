@@ -29,9 +29,23 @@ export default {
   font-family: "Apple SD Gothic Neo", "애플 SD 산돌고딕 Neo",
     "AppleSDGothicNeoM00", "맑은 고딕", "Malgun Gothic", Helvetica, Arial,
     sans-serif;
-}
+  &::-webkit-scrollbar {
+    background-color: rgba(0, 0, 0, 0);
+    height: 10px;
+    width: 10px;
+  }
 
-body {
+  &::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.15);
+    }
+    &:active {
+      background-color: rgba(0, 0, 0, 0.25);
+    }
+  }
 }
 
 #app {
@@ -88,15 +102,12 @@ button {
   width: 100vw;
 
   height: calc(100vh - 5rem);
-  // height: 500px;
   margin-top: 5rem;
   overflow: scroll;
 }
 
 .router-view {
-  // overflow: visible;
   width: 100%;
-  // height: 100%;
-  // margin-top: 5rem;
+  padding: 25px;
 }
 </style>
