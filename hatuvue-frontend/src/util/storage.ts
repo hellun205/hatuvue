@@ -3,7 +3,7 @@ const storage = {
     const item = localStorage.getItem(key);
     return item ? JSON.parse(item) : null;
   },
-
+  // eslint-disable-next-line
   set: (key: string, value: any) =>
     localStorage.setItem(key, JSON.stringify(value)),
   remove: (key: string) => localStorage.removeItem(key),

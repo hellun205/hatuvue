@@ -70,7 +70,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent } from "vue";
 import storage from "../util/storage";
 import { mapActions } from "vuex";
 
