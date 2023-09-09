@@ -9,22 +9,18 @@ const connection: Connection = mysql.createConnection({
   port: parseInt(process.env.DB_PORT ?? "3306"),
   user: process.env.DB_USER,
   password: process.env.DB_PW,
+  dateStrings: ["DATE"],
 });
-
-const error = (message: any) => {
-  console.error(`query error: ${message}`);
-  return message;
-};
 
 const query = (sql: string, ...value: any[]) =>
   new Promise<any>((res, rej) => {
     if (value.map((v) => `${v}`.includes(";")).includes(true))
-      rej(error("sql injection"));
+      rej("sql injection");
 
     console.log("query: %s", sql);
 
     connection.query(sql, value, (err, row, field) => {
-      if (err) rej(error(err));
+      if (err) rej(err);
 
       res(row);
     });
