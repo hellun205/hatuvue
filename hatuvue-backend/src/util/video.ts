@@ -1,29 +1,24 @@
 import { UUID } from "crypto";
 import { query } from "../connection";
 
-interface VideoData {
+export interface VideoData {
   id: number;
   name: string;
   description: string;
-  uploadAt: Date;
+  uploadat: Date;
   author: string;
-  fileUuid: UUID;
+  fileuuid: UUID;
   like: number[];
-  disLike: number[];
+  dislike: number[];
 }
 
-const findVideo = async (id: number): Promise<VideoData | null> => {
+export const findVideo = async (id: number): Promise<VideoData | null> => {
   try {
     const result = (await query("SELECT * FROM videos WHERE id=?", id))[0];
     return {
-      id: result.id,
-      name: result.name,
-      description: result.description,
-      uploadAt: result.uploadat,
-      author: result.author,
-      fileUuid: result.fileuuid,
+      ...result,
       like: JSON.parse(result.like),
-      disLike: JSON.parse(result.dislike),
+      dislike: JSON.parse(result.dislike),
     };
   } catch (ex) {
     console.error(ex);
@@ -31,7 +26,23 @@ const findVideo = async (id: number): Promise<VideoData | null> => {
   }
 };
 
-const createVideo = async (
+export const getAllVideo = async (): Promise<VideoData[] | null> => {
+  try {
+    const result = await query("SELECT * FROM videos");
+    return (result as any[]).map((row) => {
+      return {
+        ...row,
+        like: JSON.parse(row.like),
+        disLike: JSON.parse(row.dislike),
+      };
+    });
+  } catch (ex) {
+    console.error(ex);
+    return null;
+  }
+};
+
+export const createVideo = async (
   owner: number,
   name: string,
   description: string,
@@ -59,5 +70,3 @@ const createVideo = async (
     return false;
   }
 };
-
-export { findVideo, VideoData, createVideo };
