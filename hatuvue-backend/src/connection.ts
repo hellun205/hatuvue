@@ -18,7 +18,8 @@ const error = (message: any) => {
 
 const query = (sql: string, ...value: any[]) =>
   new Promise<any>((res, rej) => {
-    if (sql.includes(";")) rej(error("sql injection"));
+    if (value.map((v) => `${v}`.includes(";")).includes(true))
+      rej(error("sql injection"));
 
     console.log("query: %s", sql);
 

@@ -5,4 +5,6 @@ const findVideo = async (id: number) => {
   return result[0];
 };
 
+const createVideo = async () => {};
+
 export { findVideo };
