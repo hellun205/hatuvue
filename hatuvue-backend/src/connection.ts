@@ -16,15 +16,8 @@ const error = (message: any) => {
   return message;
 };
 
-const query = (sql: string, ...value: string[]) =>
-  new Promise<
-    | mysql.OkPacket
-    | mysql.RowDataPacket[]
-    | mysql.ResultSetHeader[]
-    | mysql.RowDataPacket[][]
-    | mysql.OkPacket[]
-    | mysql.ProcedureCallPacket
-  >((res, rej) => {
+const query = (sql: string, ...value: any[]) =>
+  new Promise<any>((res, rej) => {
     if (sql.includes(";")) rej(error("sql injection"));
 
     console.log("query: %s", sql);
