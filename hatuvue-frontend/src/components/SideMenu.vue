@@ -28,6 +28,8 @@ export default defineComponent({
 <style lang="scss">
 @import "../Constance.scss";
 .sidemenu-wrapper {
+  position: fixed;
+  z-index: 501;
   .menu-enter-active,
   .menu-leave-active {
     transition: margin-left 0.5s cubic-bezier(0.22, 1, 0.36, 1);
@@ -44,6 +46,7 @@ export default defineComponent({
     width: 100vw;
     height: calc(100vh - $header-height);
     background-color: rgba(0, 0, 0, 0.1);
+    z-index: 500;
   }
 
   .menu {
@@ -51,6 +54,7 @@ export default defineComponent({
     position: fixed;
     height: calc(100vh - $header-height);
     background-color: white;
+    z-index: 501;
   }
 }
 </style>

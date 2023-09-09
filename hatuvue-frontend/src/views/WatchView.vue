@@ -2,7 +2,6 @@
   <div class="watch-view" v-if="isLoaded">
     <div class="video-wrapper">
       <video-player
-        ref="videoplayer"
         class="video"
         :src="`${getServer()}/files/uploads/${video.filename}`"
         controls
@@ -81,10 +80,14 @@ export default defineComponent({
     width: 1000px;
     aspect-ratio: 16/9;
     .video {
+      z-index: 0;
+      min-height: 100%;
+      min-width: 100%;
       border: 1px solid black;
       aspect-ratio: 16 / 9;
       max-width: 100%;
       max-height: 100%;
+      position: relative;
     }
     .info {
       margin-top: 15px;

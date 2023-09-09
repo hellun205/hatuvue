@@ -129,6 +129,7 @@ export default defineComponent({
 @import "../Constance.scss";
 
 .header {
+  z-index: 501;
   box-shadow: 0px 0px 2.2px rgba(0, 0, 0, 0.06),
     0px 0px 5.3px rgba(0, 0, 0, 0.05), 0px 0px 10px rgba(0, 0, 0, 0.039),
     0px 0px 17.9px rgba(0, 0, 0, 0.029), 0px 0px 33.4px rgba(0, 0, 0, 0.019),
@@ -242,6 +243,7 @@ export default defineComponent({
   }
 
   .dropdown {
+    z-index: 501;
     background-color: $pri-light;
     position: relative;
     width: 100%;

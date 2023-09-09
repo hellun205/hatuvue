@@ -86,24 +86,24 @@ export const createVideo = async (
   name: string,
   description: string,
   author: string,
-  fileUuid: string,
+  filename: string,
   type: string
 ) => {
   try {
     await query(
-      "INSERT INTO videos (owner,name,description,author,uploadat,fileuuid,type) VALUES (?,?,?,?,NOW(),?,?)",
+      "INSERT INTO videos (owner,name,description,author,uploadat,filename,type) VALUES (?,?,?,?,NOW(),?,?)",
       owner,
       name,
       description,
       author,
-      fileUuid,
+      filename,
       type
     );
     console.log(
-      "create video: %s,author: %s, uuid: %s",
+      "create video: %s,author: %s, file: %s",
       name,
       author,
-      fileUuid
+      filename
     );
     return true;
   } catch (ex) {
