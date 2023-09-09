@@ -10,6 +10,7 @@ export interface VideoData {
   fileuuid: UUID;
   like: number[];
   dislike: number[];
+  view: number;
 }
 
 export const findVideo = async (id: number): Promise<VideoData | null> => {
@@ -26,6 +27,27 @@ export const findVideo = async (id: number): Promise<VideoData | null> => {
   }
 };
 
+export const searchVideoFromName = async (
+  name: string
+): Promise<VideoData[] | null> => {
+  try {
+    const result = await query(
+      "SELECT * FROM videos WHERE INSTR(REPLACE(name, ' ', ''), REPLACE(?, ' ', ''))",
+      name
+    );
+    return (result as any[]).map((row) => {
+      return {
+        ...row,
+        like: JSON.parse(row.like),
+        dislike: JSON.parse(row.dislike),
+      };
+    });
+  } catch (ex) {
+    console.error(ex);
+    return null;
+  }
+};
+
 export const getAllVideo = async (): Promise<VideoData[] | null> => {
   try {
     const result = await query("SELECT * FROM videos");
@@ -33,7 +55,25 @@ export const getAllVideo = async (): Promise<VideoData[] | null> => {
       return {
         ...row,
         like: JSON.parse(row.like),
-        disLike: JSON.parse(row.dislike),
+        dislike: JSON.parse(row.dislike),
+      };
+    });
+  } catch (ex) {
+    console.error(ex);
+    return null;
+  }
+};
+
+export const getVideosFromOwner = async (
+  owner: number
+): Promise<VideoData[] | null> => {
+  try {
+    const result = await query("SELECT * FROM videos WHERE owner=?", owner);
+    return (result as any[]).map((row) => {
+      return {
+        ...row,
+        like: JSON.parse(row.like),
+        dislike: JSON.parse(row.dislike),
       };
     });
   } catch (ex) {
