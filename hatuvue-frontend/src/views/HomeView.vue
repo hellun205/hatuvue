@@ -1,12 +1,22 @@
 <template>
   <div class="home">
-    <div v-for="(v, i) in videos" :key="i">
-      {{ v.name }}
-    </div>
+    <VideoItem
+      v-for="(v, i) in videos"
+      :key="i"
+      :name="v.name"
+      :author="v.author"
+      profile=""
+      :date="new Date(v.uploadat)"
+      :view="v.view"
+      thumbnail=""
+      width="400px"
+    >
+    </VideoItem>
   </div>
 </template>
 
 <script lang="ts">
+import VideoItem from "@/components/VideoItem.vue";
 import { request } from "@/util/server";
 import { Video } from "@/util/video";
 import { defineComponent } from "vue";
@@ -17,12 +27,12 @@ interface Data {
 
 interface GetVideoRes {
   message: string;
-  data: Video;
+  data: Video[];
 }
 
 export default defineComponent({
   name: "HomeView",
-  components: {},
+  components: { VideoItem },
   data() {
     return {
       videos: [],
@@ -30,8 +40,8 @@ export default defineComponent({
   },
   methods: {
     async LoadVideos() {
-      request.get<GetVideoRes>(`video?id=4`).then((res) => {
-        if (res?.data.data) this.videos.push(res?.data.data);
+      request.get<GetVideoRes>(`video`).then((res) => {
+        if (res?.data.data) this.videos = res?.data.data;
       });
     },
   },
