@@ -21,7 +21,7 @@ const findVideo = async (id: number): Promise<VideoData | null> => {
       description: result.description,
       uploadAt: result.uploadat,
       author: result.author,
-      fileUuid: result.filduuid,
+      fileUuid: result.fileuuid,
       like: JSON.parse(result.like),
       disLike: JSON.parse(result.dislike),
     };
