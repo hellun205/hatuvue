@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import WatchView from "../views/WatchView.vue";
+import UploadView from "../views/UploadView.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -12,6 +13,11 @@ const routes: Array<RouteRecordRaw> = [
     path: "/watch/:id",
     name: "watch",
     component: WatchView,
+  },
+  {
+    path: "/upload",
+    name: "upload",
+    component: UploadView,
   },
   // {
   //   path: "/about",

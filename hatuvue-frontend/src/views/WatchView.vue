@@ -5,6 +5,7 @@
         class="video"
         :src="`${getServer()}/files/uploads/${video.filename}`"
         controls
+        preload="auto"
       />
 
       <div class="info">

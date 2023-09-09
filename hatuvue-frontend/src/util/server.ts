@@ -7,8 +7,8 @@ export const request = {
     try {
       const res = await axios.get<T>(`${getServer()}/${path}`, {
         headers: {
-          ...headers,
           "Content-Type": "application/json",
+          ...headers,
         },
       });
       return res;
@@ -21,8 +21,8 @@ export const request = {
     try {
       const res = await axios.post<T>(`${getServer()}/${path}`, data, {
         headers: {
-          ...headers,
           "Content-Type": "application/json",
+          ...headers,
         },
       });
       return res;
@@ -35,8 +35,8 @@ export const request = {
     try {
       const res = await axios.delete<T>(`${getServer()}/${path}`, {
         headers: {
-          ...headers,
           "Content-Type": "application/json",
+          ...headers,
         },
       });
       return res;
@@ -49,8 +49,8 @@ export const request = {
     try {
       const res = await axios.patch<T>(`${getServer()}/${path}`, data, {
         headers: {
-          ...headers,
           "Content-Type": "application/json",
+          ...headers,
         },
       });
       return res;
@@ -63,8 +63,8 @@ export const request = {
     try {
       const res = await axios.put<T>(`${getServer()}/${path}`, data, {
         headers: {
-          ...headers,
           "Content-Type": "application/json",
+          ...headers,
         },
       });
       return res;

@@ -9,7 +9,7 @@ router.post("/upload", upload.single("file"), (req, res) => {
     data: {
       name: req.file?.originalname,
       type: req.file?.mimetype,
-      uuid: req.file?.filename,
+      file: req.file?.filename,
       size: req.file?.size,
     },
   });
