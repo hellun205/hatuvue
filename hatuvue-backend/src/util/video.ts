@@ -1,4 +1,3 @@
-import { UUID } from "crypto";
 import { query } from "../connection";
 
 export interface VideoData {
@@ -7,7 +6,7 @@ export interface VideoData {
   description: string;
   uploadat: Date;
   author: string;
-  fileuuid: UUID;
+  filename: string;
   like: number[];
   dislike: number[];
   view: number;
@@ -87,16 +86,18 @@ export const createVideo = async (
   name: string,
   description: string,
   author: string,
-  fileUuid: string
+  fileUuid: string,
+  type: string
 ) => {
   try {
     await query(
-      "INSERT INTO videos (owner,name,description,author,uploadat,fileuuid) VALUES (?,?,?,?,NOW(),?)",
+      "INSERT INTO videos (owner,name,description,author,uploadat,fileuuid,type) VALUES (?,?,?,?,NOW(),?,?)",
       owner,
       name,
       description,
       author,
-      fileUuid
+      fileUuid,
+      type
     );
     console.log(
       "create video: %s,author: %s, uuid: %s",

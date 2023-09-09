@@ -4,7 +4,7 @@ export interface Video {
   description: string;
   uploadat: Date;
   author: string;
-  fileuuid: `${string}-${string}-${string}-${string}-${string}`;
+  filename: string;
   like: number[];
   dislike: number[];
   view: number;

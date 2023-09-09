@@ -56,8 +56,15 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/upload", async (req, res) => {
-  const { name, description, author, file, owner } = req.body;
-  const result = await createVideo(owner, name, description, author, file);
+  const { name, description, author, file, owner, type } = req.body;
+  const result = await createVideo(
+    owner,
+    name,
+    description,
+    author,
+    file,
+    type
+  );
 
   result
     ? res.status(201).json({ message: "Ok" })
