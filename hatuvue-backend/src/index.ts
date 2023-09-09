@@ -1,16 +1,14 @@
 import express, { Request, Response, NextFunction } from "express";
-import mysql from "mysql2";
 import cors from "cors";
 import bodyParser from "body-parser";
 
 const app = express();
 
-const getRouter = (name: string) => require(`../routes/${name}`);
+const getRouter = (name: string) => require(`./routes/${name}`);
 
 const indexRouter = getRouter("index");
 const testRouter = getRouter("test");
-
-let connection;
+const userRouter = getRouter("user");
 
 app.set("port", 3000);
 
@@ -20,17 +18,8 @@ app.use("/cdn", express.static("public"));
 
 app.use("/", indexRouter);
 app.use("/test", testRouter);
+app.use("/user", userRouter);
 
-(async () => {
-  connection = await mysql.createConnection({
-    host: "localhost",
-    database: "hatuvue",
-    port: 3306,
-    user: "user",
-    password: "user",
-  });
-
-  app.listen(app.get("port"), () => {
-    console.log("server is listening port " + app.get("port"));
-  });
-})();
+app.listen(app.get("port"), () => {
+  console.log("server is listening port " + app.get("port"));
+});
