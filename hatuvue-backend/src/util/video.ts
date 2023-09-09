@@ -86,18 +86,16 @@ export const createVideo = async (
   name: string,
   description: string,
   author: string,
-  filename: string,
-  type: string
+  filename: string
 ) => {
   try {
     await query(
-      "INSERT INTO videos (owner,name,description,author,uploadat,filename,type) VALUES (?,?,?,?,NOW(),?,?)",
+      "INSERT INTO videos (owner,name,description,author,uploadat,filename) VALUES (?,?,?,?,NOW(),?)",
       owner,
       name,
       description,
       author,
-      filename,
-      type
+      filename
     );
     console.log(
       "create video: %s,author: %s, file: %s",

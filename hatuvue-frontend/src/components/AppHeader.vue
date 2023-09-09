@@ -64,7 +64,9 @@
     </div>
 
     <div class="right">
-      <button class="button">업로드</button>
+      <router-link to="/upload"
+        ><button class="button">업로드</button></router-link
+      >
     </div>
   </div>
 </template>

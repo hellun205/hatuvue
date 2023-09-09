@@ -1,6 +1,7 @@
 import express from "express";
 import {
   createUser,
+  existUserFromId,
   existUserFromIp,
   findUserFromId,
   findUserFromIp,
@@ -28,12 +29,31 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/create", async (req, res) => {
-  if (await existUserFromIp(req.ip)) {
+  const ip = req.body.ip;
+  if (await existUserFromIp(ip)) {
     res.status(400).json({ message: "Fail" });
   } else {
-    createUser(req.ip);
+    createUser(ip);
     res.status(201).json({ message: "Ok" });
   }
+});
+
+router.get("/exist", async (req, res) => {
+  const ip = req.query.ip;
+  const id = req.query.id;
+
+  if (id) {
+    const user = await existUserFromId(isNumeric(id));
+    console.log(user);
+    user
+      ? res.status(200).json({ message: "Ok", data: user })
+      : res.status(404).json({ message: "Fail" });
+  } else if (ip) {
+    const user = await existUserFromIp(ip.toString());
+    user
+      ? res.status(200).json({ message: "Ok", data: user })
+      : res.status(404).json({ message: "Fail" });
+  } else res.status(400).json({ message: "Fail" });
 });
 
 module.exports = router;

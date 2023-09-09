@@ -22,7 +22,11 @@ const findUserFromId = async (id: number) => {
 
 const createUser = async (ip: string) => {
   try {
-    await query("INSERT INTO user (ip) VALUES (?)", ip);
+    await query(
+      "INSERT INTO user (ip, username) VALUES (?, ?)",
+      ip,
+      "Anonymous"
+    );
     console.log("created user: %s", ip);
   } catch (ex) {
     console.error(ex);

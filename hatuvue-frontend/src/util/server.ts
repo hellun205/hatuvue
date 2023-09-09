@@ -2,6 +2,11 @@ import axios from "axios";
 
 export const getServer = () => "http://localhost:3000";
 
+export const getIp = async () => {
+  const ip = await axios.get("https://api.ipify.org/");
+  return `${ip.data}`;
+};
+
 export const request = {
   get: async <T>(path: string, headers?: any) => {
     try {

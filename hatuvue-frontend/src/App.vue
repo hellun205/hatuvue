@@ -9,12 +9,16 @@
 <script lang="ts">
 import Header from "./components/AppHeader.vue";
 import SideMenu from "./components/SideMenu.vue";
+import { refreshUser } from "./util/user";
 
 export default {
   name: "App",
   components: {
     Header,
     SideMenu,
+  },
+  mounted() {
+    refreshUser();
   },
 };
 </script>
