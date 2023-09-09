@@ -1,14 +1,23 @@
 <template>
   <div class="home">
-    <h1>안녕하세요 hello</h1>
+    <div v-for="(v, i) in videos" :key="i">
+      {{ v.name }}
+    </div>
   </div>
 </template>
 
 <script lang="ts">
+import { request } from "@/util/server";
+import { Video } from "@/util/video";
 import { defineComponent } from "vue";
 
 interface Data {
-  videos: string[];
+  videos: Video[];
+}
+
+interface GetVideoRes {
+  message: string;
+  data: Video;
 }
 
 export default defineComponent({
@@ -19,7 +28,16 @@ export default defineComponent({
       videos: [],
     } as Data;
   },
-  // mounted() {},
+  methods: {
+    async LoadVideos() {
+      request.get<GetVideoRes>(`video?id=4`).then((res) => {
+        if (res?.data.data) this.videos.push(res?.data.data);
+      });
+    },
+  },
+  mounted() {
+    this.LoadVideos();
+  },
 });
 </script>
 

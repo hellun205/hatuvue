@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const getServer = () => "localhost:3000";
+export const getServer = () => "http://localhost:3000";
 
 export const request = {
   get: async <T>(path: string, headers?: any) => {
@@ -10,7 +10,6 @@ export const request = {
           ...headers,
           "Content-Type": "application/json",
         },
-        withCredentials: true,
       });
       return res;
     } catch (ex) {
@@ -25,7 +24,6 @@ export const request = {
           ...headers,
           "Content-Type": "application/json",
         },
-        withCredentials: true,
       });
       return res;
     } catch (ex) {
@@ -40,7 +38,6 @@ export const request = {
           ...headers,
           "Content-Type": "application/json",
         },
-        withCredentials: true,
       });
       return res;
     } catch (ex) {
@@ -50,12 +47,11 @@ export const request = {
   },
   patch: async <T>(path: string, data?: any, headers?: any) => {
     try {
-      const res = await axios.patch<T>(`${getServer()}/${path}`, {
+      const res = await axios.patch<T>(`${getServer()}/${path}`, data, {
         headers: {
           ...headers,
           "Content-Type": "application/json",
         },
-        withCredentials: true,
       });
       return res;
     } catch (ex) {
@@ -65,12 +61,11 @@ export const request = {
   },
   put: async <T>(path: string, data?: any, headers?: any) => {
     try {
-      const res = await axios.put<T>(`${getServer()}/${path}`, {
+      const res = await axios.put<T>(`${getServer()}/${path}`, data, {
         headers: {
           ...headers,
           "Content-Type": "application/json",
         },
-        withCredentials: true,
       });
       return res;
     } catch (ex) {
