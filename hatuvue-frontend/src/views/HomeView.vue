@@ -9,7 +9,7 @@
       :date="new Date(v.uploadat)"
       :view="v.view"
       thumbnail=""
-      width="400px"
+      :id="v.id"
     >
     </VideoItem>
   </div>
@@ -54,5 +54,13 @@ export default defineComponent({
 <style lang="scss">
 .home {
   height: 200vh;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  align-content: flex-start;
+
+  & .video-item {
+    margin: 10px;
+  }
 }
 </style>

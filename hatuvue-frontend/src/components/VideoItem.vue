@@ -1,15 +1,17 @@
 <template>
-  <div class="video-item" :style="{ width: width }">
-    <img class="thumbnail" :src="thumbnail" />
+  <router-link class="video-item" :to="`/watch/${id}`">
+    <!-- <div class="video-item"> -->
+    <img class="thumbnail" :src="thumbnail" :alt="`thumbnail of ${name}`" />
     <div class="info">
-      <img class="profile" :src="profile" />
+      <img class="profile" :src="profile" :alt="`author profile of ${name}`" />
       <div class="info2">
         <div class="name">{{ name }}</div>
         <div class="author">{{ author }}</div>
         <div class="view">조회수 {{ view }} · {{ date?.toDateString() }}</div>
       </div>
     </div>
-  </div>
+    <!-- </div> -->
+  </router-link>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
@@ -24,14 +26,52 @@ export default defineComponent({
     date: Date,
     thumbnail: String,
     width: String,
+    id: Number,
   },
 });
 </script>
 <style lang="scss">
 @import "../Constance.scss";
+@media (min-width: 0px) {
+  .video-item {
+    width: 200px;
+  }
+}
+@media (min-width: 300px) {
+  .video-item {
+    width: 100%;
+  }
+}
+
+@media (min-width: 580px) {
+  .video-item {
+    width: calc(50% - 20px);
+  }
+}
+
+@media (min-width: 1080px) {
+  .video-item {
+    width: calc(33% - 20px);
+  }
+}
+
+@media (min-width: 1580px) {
+  .video-item {
+    width: calc(25% - 20px);
+  }
+}
+
+@media (min-width: 2080px) {
+  .video-item {
+    width: calc(20% - 20px);
+  }
+}
+
 .video-item {
   cursor: pointer;
+  max-width: 500px;
   .thumbnail {
+    min-width: 100%;
     width: 100%;
     aspect-ratio: 16 / 9;
     border-radius: 10px;
