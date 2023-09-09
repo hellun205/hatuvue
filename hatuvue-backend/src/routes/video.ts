@@ -1,6 +1,7 @@
 import express from "express";
 import { findVideo } from "../util/video";
 import { isNumeric } from "../util/util";
+import upload from "../upload";
 
 const router = express.Router();
 
