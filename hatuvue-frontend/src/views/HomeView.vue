@@ -7,9 +7,19 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
+interface Data {
+  videos: string[];
+}
+
 export default defineComponent({
   name: "HomeView",
   components: {},
+  data() {
+    return {
+      videos: [],
+    } as Data;
+  },
+  // mounted() {},
 });
 </script>
 
