@@ -1,42 +1,50 @@
 <template>
-  <div class="upload-view">
-    <h1>동영상 업로드</h1>
-    <div class="status" v-if="uploading"><h2>업로드 중...</h2></div>
-    <div class="preview" v-if="previewSrc">
-      <video-player class="video" :src="previewSrc" controls preload="auto" />
+  <h1>동영상 업로드</h1>
+  <div class="upload-view mt-1">
+    <div class="upload-wrapper">
+      <div class="status" v-if="uploading"><h2>업로드 중...</h2></div>
+      <div class="preview" v-if="previewSrc">
+        <video-player class="video" :src="previewSrc" controls preload="auto" />
+      </div>
+
+      <div class="input-field mt-1">
+        <input class="filename" readonly v-model="selectedFile" />
+        <button class="button find ml-10" @click="handleSelectFileClick">
+          선택
+        </button>
+        <button
+          class="button ml-10"
+          @click="upload"
+          :disabled="!isEnableUpload"
+        >
+          업로드
+        </button>
+        <input
+          ref="input"
+          type="file"
+          accept="video/*"
+          @change="handleChangeFile"
+        />
+      </div>
     </div>
 
-    <div class="input-field mt-1">
-      <input class="filename" readonly v-model="selectedFile" />
-      <button class="button find ml-10" @click="handleSelectFileClick">
-        선택
-      </button>
-      <button class="button ml-10" @click="upload" :disabled="!isEnableUpload">
-        업로드
-      </button>
-      <input
-        ref="input"
-        type="file"
-        accept="video/*"
-        @change="handleChangeFile"
-      />
-    </div>
-
-    <div class="create-field mt-1" v-show="uploadFile != undefined">
-      <input class="title" v-model="name" placeholder="제목" />
-      <textarea
-        class="desc mt-10"
-        v-model="description"
-        placeholder="설명"
-        rows="5"
-      ></textarea>
-      <button
-        class="button create mt-10"
-        @click="createVideo"
-        :disabled="!handleCreateEnabled()"
-      >
-        비디오 업로드
-      </button>
+    <div class="field-wrapper">
+      <div class="create-field" v-show="uploadFile != undefined">
+        <input class="title" v-model="name" placeholder="제목" />
+        <textarea
+          class="desc mt-10"
+          v-model="description"
+          placeholder="설명"
+          rows="5"
+        ></textarea>
+        <button
+          class="button create mt-10"
+          @click="createVideo"
+          :disabled="!handleCreateEnabled()"
+        >
+          비디오 업로드
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -146,15 +154,51 @@ export default defineComponent({
 <style lang="scss">
 @import "../Constance.scss";
 
+@media (min-width: 0px) {
+  .upload-view {
+    flex-direction: column;
+  }
+  .field-wrapper,
+  .upload-wrapper {
+    width: 90%;
+  }
+
+  .field-wrapper {
+    margin-top: 1rem;
+  }
+}
+
+@media (min-width: 850px) {
+  .upload-view {
+    flex-direction: row;
+  }
+
+  .upload-wrapper {
+    width: 55%;
+  }
+
+  .field-wrapper {
+    width: 35%;
+    margin-left: 1rem;
+  }
+}
+
 .upload-view {
   display: flex;
-  flex-direction: column;
-  // justify-content: center;
+  justify-content: center;
   align-items: center;
+  width: 100%;
+
+  .upload-wrapper,
+  .field-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
   .preview {
     aspect-ratio: 16 / 9;
-    width: 70%;
+    width: 100%;
     .video {
       z-index: 0;
       border: 1px solid black;
@@ -169,7 +213,7 @@ export default defineComponent({
   }
 
   .input-field {
-    width: 70%;
+    width: 100%;
     .filename {
       width: calc(100% - 160px);
     }
@@ -180,7 +224,7 @@ export default defineComponent({
 
   .create-field {
     display: flex;
-    width: 70%;
+    width: 100%;
     flex-direction: column;
 
     .title {
