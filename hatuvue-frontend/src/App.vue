@@ -67,7 +67,8 @@ a {
   text-decoration-line: none;
 }
 
-input {
+input,
+textarea {
   transition: border-color 0.2s;
   padding: 0.6rem;
   border-radius: 5px;
@@ -86,18 +87,20 @@ button {
   outline: none;
   background-color: $pri-light;
   user-select: none;
-  cursor: pointer;
 }
 
 .button {
   transition: background-color 0.2s;
 
-  &:hover {
-    background-color: $pri-light-hover;
-  }
+  &:enabled {
+    &:hover {
+      background-color: $pri-light-hover;
+      cursor: pointer;
+    }
 
-  &:active {
-    background-color: $pri-light-active;
+    &:active {
+      background-color: $pri-light-active;
+    }
   }
 }
 
@@ -113,5 +116,37 @@ button {
 .router-view {
   width: 100%;
   padding: 25px;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+.mb-1 {
+  margin-bottom: 1rem;
+}
+
+.mt-10 {
+  margin-top: 10px;
+}
+
+.mt-1 {
+  margin-top: 1rem;
+}
+
+.ml-10 {
+  margin-left: 10px;
+}
+
+.ml-1 {
+  margin-left: 1rem;
+}
+
+.mr-10 {
+  margin-right: 10px;
+}
+
+.mr-1 {
+  margin-right: 1rem;
 }
 </style>
