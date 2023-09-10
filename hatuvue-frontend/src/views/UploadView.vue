@@ -30,7 +30,11 @@
         placeholder="설명"
         rows="5"
       ></textarea>
-      <button class="button create mt-10" @click="createVideo">
+      <button
+        class="button create mt-10"
+        @click="createVideo"
+        :disabled="!handleCreateEnabled()"
+      >
         비디오 업로드
       </button>
     </div>
@@ -43,6 +47,7 @@ import storage from "@/util/storage";
 import { User } from "@/util/user";
 import { VideoPlayer } from "@videojs-player/vue";
 import "video.js/dist/video-js.css";
+import { validate } from "@/util/validate";
 interface Data {
   selectedFile: string;
   uploading: boolean;
@@ -87,7 +92,12 @@ export default defineComponent({
         this.isEnableUpload = true;
       }
     },
-
+    handleCreateEnabled() {
+      return (
+        validate("video.name", this.name) &&
+        validate("video.description", this.description)
+      );
+    },
     upload() {
       let formData = new FormData();
 
@@ -134,6 +144,8 @@ export default defineComponent({
 });
 </script>
 <style lang="scss">
+@import "../Constance.scss";
+
 .upload-view {
   display: flex;
   flex-direction: column;
@@ -178,9 +190,6 @@ export default defineComponent({
     .desc {
       width: 100%;
       resize: none;
-    }
-
-    .create {
     }
   }
 
